@@ -1,17 +1,84 @@
+// Three 1's => 1000 points
+//  Three 6's =>  600 points
+//  Three 5's =>  500 points
+//  Three 4's =>  400 points
+//  Three 3's =>  300 points
+//  Three 2's =>  200 points
+//  One   1   =>  100 points
+//  One   5   =>   50 point
+
+//Greed is Good_________________________________________________
+/** @param {number[]} dice */
+// function score(dice){
+//     let diceCount = Array(6).fill(0)//[0,0,0,0,0,0] сколько раз выпало то или иное значение кубиков кости
+//     let triplePoints = [1000, 200, 300, 400, 500, 600]
+//     let singlePoints = [100, 0, 0, 0, 50, 0]
+//     dice.forEach(score => {
+//         diceCount[score -1] ++//индексы с 1
+//          } )
+//          let result = diceCount.map((count, index) => {
+//             return count > 2 ?
+//              triplePoints[index] + singlePoints[index] * (count - 3) : //: - это или 
+//              singlePoints[index] *count
+//          }).reduce((acc, el) => acc + el)
+//          return result
+// }
+
+// console.log(score([2, 3, 4, 6, 2]));// 0
+// console.log(score([4, 4, 4, 3, 3]));// 400
+// console.log(score([5, 1, 3, 4, 1]));// 250
+// console.log(score([1, 1, 1, 3, 1]));// 1100
+// console.log(score([2, 4, 4, 5, 4]));// 450
+
+
+//Moving Zeros To The End______________________________________
+// var moveZeros = function (arr) {
+//          let arrWithoutNull = arr.filter(el => el !== 0) //выкидываем нули
+//          return arrWithoutNull.concat(Array(arr.length - arrWithoutNull.length).fill(0))//берем длинну массива начального отнимаем длину отфильтрованного массива получается 4 и добавляем нули
+//   }
+//   console.log(moveZeros([false,1,0,1,2,0,1,3,"a"]));
+
+
+/**@param {string} str */
 //Simple Pig Latin_________________________________________________
-function pigIt(str){
-    let arrStr = str.split(' ')
-    arrStr.forEach(el => {
-        
-    });
-   return pigIt('Pig latin is cool');
+// function pigIt(str){
+//     return str.split(/\s+/)//разбиваем на слова
+//     .map(word =>{
+//         return /^[!.,-?]$/.test(word) ? word : //[]находим знаки препинания, тестом проверяем что совпадает
+//         word.substring(1) + word.charAt(0) + 'ay'
+//     }).join(' ')
+//   }
+//   console.log(pigIt('Pig latin is cool'));
+ 
+//Decathlon World Championship___________________________________
+const pTable = 
+{ '100m': { A: 25.4347, B: 18, C: 1.81 },
+  'Long jump': { A: 0.14354, B: 220, C: 1.4 },
+  'Shot put': { A: 51.39, B: 1.5, C: 1.05 },
+  'High jump': { A: 0.8465, B: 75, C: 1.42 },
+  '400m': { A: 1.53775, B: 82, C: 1.81 },
+  '110m hurdles': { A: 5.74352, B: 28.5, C: 1.92 },
+  'Discus throw': { A: 12.91, B: 4, C: 1.1 },
+  'Pole vault': { A: 0.2797, B: 100, C: 1.35 },
+  'Javelin throw': { A: 10.14, B: 7, C: 1.08 },
+  '1500m': { A: 0.03768, B: 480, C: 1.85 } } 
+
+  var athletes = {
+    "Bob": {"100m": 12.3, "Long jump": 530, "Shot put": 9.4, "High jump": 160, "400m": 59.6, "110m hurdles": 19.2, "Discus throw": 23, "Pole vault": 270, "Javelin throw": 19, "1500m": 300.5 },
+    "Fred": {"100m": 11.9, "Long jump": 500, "Shot put": 9.4, "High jump": 150, "400m": 59.6, "110m hurdles": 19.2, "Discus throw": 19, "Pole vault": 320, "Javelin throw": 19, "1500m": 295.5 }
   }
-  console.log(pigIt('Pig latin is cool'));
+    function decathlon(athletes){
+        //INT(A(B-P)^C)
+       const timePoints = (a,b,c,p) => Math.round(a* Math.pow(b-p, c)) 
+        //INT(A(P-B)^C)
+       const scorePoints = (a,b,c,p) => Math.round(a* Math.pow(p-b, c))
+       Object.keys(athletes).forEach(athleteName => {
+           console.log(athleteName + ':');
+           console.log(athletes[athleteName]);
 
-//Decathlon World Championship
-// let hundred 
-
-
+       })
+    }
+      
 
 
  //Who likes it?__________________________________________________
