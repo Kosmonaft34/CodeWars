@@ -1,3 +1,65 @@
+//The observed PIN_____________________________________
+/** @param {string} observed */
+function getPINs(observed) {
+    let variants = {
+        '0' : ['0', '8'],              //для 0
+        '1' : ['1', '2', '4'],          //для 1
+        '2' : ['1','2', '3', '5'],          //2
+        '3' : ['2', '3', '6'],          //3
+        '4' : ['1', '4', '5', '7'],     //4
+        '5' : ['2', '5', '6', '8'],     //5
+        '6' : ['3', '5', '6', '9'],     //6
+        '7' : ['4', '7', '8'],          //7
+        '8' : ['5', '7', '8', '9', '0'],//8
+        '9' : ['6', '8', '9']          //9
+
+    }
+    function cartesian(arrays) {
+        const result = [];
+        // функция, которая будет рекурсивно вызываться
+        // глубина рекурсии равна arrays.length
+        // в процессе рекурсии функция будет создавать часть элемента декартова произведения
+        // в конце рекусрии функция добавит созданный элемент в массив result
+        const recursion = (tuplePart) => {
+            if (tuplePart.length === arrays.length) {
+                result.push(tuplePart);
+            } else {
+                const array = arrays[tuplePart.length];
+                for (const element of array) {
+                    // создаём копию tuplePart и добавляем в неё очередной элемент
+                    const tuplePartWithNewElement = tuplePart.concat([element]);
+                    recursion(tuplePartWithNewElement);
+                }
+            }
+        };
+        recursion([]);
+        return result;
+    }
+    
+     const sets = observed.split('').map(digit=>{
+         return variants[digit]
+     })
+     return cartesian(sets).map(comb =>{
+         return comb.join(' ')
+     })
+  }
+ console.log(getPINs('369'));
+// let deadline = new Date('Dec 1 2021 00:00:00'); 
+//         function counts() { 
+//             let now = new Date() 
+//             let gap = deadline - now; 
+//             let days = Math.floor(gap / 1000 / 60 / 60 / 24); 
+//             let hours = Math.floor(gap / 1000 / 60 / 60) % 24; 
+//             let min = Math.floor(gap / 1000 / 60) % 60; 
+//             let sec = Math.floor(gap / 1000) % 60; 
+//             document.getElementById("days").innerText = days; 
+//             document.getElementById("hours").innerText = hours; 
+//             document.getElementById("min").innerText = min; 
+//             document.getElementById("sec").innerText = sec; 
+//         } 
+//         const createClock = setInterval(counts, 1000); 
+
+
 // Three 1's => 1000 points
 //  Three 6's =>  600 points
 //  Three 5's =>  500 points
@@ -51,35 +113,41 @@
 //   console.log(pigIt('Pig latin is cool'));
  
 //Decathlon World Championship___________________________________
-const pTable = 
-{ '100m': { A: 25.4347, B: 18, C: 1.81 },
-  'Long jump': { A: 0.14354, B: 220, C: 1.4 },
-  'Shot put': { A: 51.39, B: 1.5, C: 1.05 },
-  'High jump': { A: 0.8465, B: 75, C: 1.42 },
-  '400m': { A: 1.53775, B: 82, C: 1.81 },
-  '110m hurdles': { A: 5.74352, B: 28.5, C: 1.92 },
-  'Discus throw': { A: 12.91, B: 4, C: 1.1 },
-  'Pole vault': { A: 0.2797, B: 100, C: 1.35 },
-  'Javelin throw': { A: 10.14, B: 7, C: 1.08 },
-  '1500m': { A: 0.03768, B: 480, C: 1.85 } } 
+// const pTable = 
+// { '100m': { A: 25.4347, B: 18, C: 1.81 },
+//   'Long jump': { A: 0.14354, B: 220, C: 1.4 },
+//   'Shot put': { A: 51.39, B: 1.5, C: 1.05 },
+//   'High jump': { A: 0.8465, B: 75, C: 1.42 },
+//   '400m': { A: 1.53775, B: 82, C: 1.81 },
+//   '110m hurdles': { A: 5.74352, B: 28.5, C: 1.92 },
+//   'Discus throw': { A: 12.91, B: 4, C: 1.1 },
+//   'Pole vault': { A: 0.2797, B: 100, C: 1.35 },
+//   'Javelin throw': { A: 10.14, B: 7, C: 1.08 },
+//   '1500m': { A: 0.03768, B: 480, C: 1.85 } } 
 
-  var athletes = {
-    "Bob": {"100m": 12.3, "Long jump": 530, "Shot put": 9.4, "High jump": 160, "400m": 59.6, "110m hurdles": 19.2, "Discus throw": 23, "Pole vault": 270, "Javelin throw": 19, "1500m": 300.5 },
-    "Fred": {"100m": 11.9, "Long jump": 500, "Shot put": 9.4, "High jump": 150, "400m": 59.6, "110m hurdles": 19.2, "Discus throw": 19, "Pole vault": 320, "Javelin throw": 19, "1500m": 295.5 }
-  }
-    function decathlon(athletes){
-        //INT(A(B-P)^C)
-       const timePoints = (a,b,c,p) => Math.round(a* Math.pow(b-p, c)) 
-        //INT(A(P-B)^C)
-       const scorePoints = (a,b,c,p) => Math.round(a* Math.pow(p-b, c))
-       Object.keys(athletes).forEach(athleteName => {
-           console.log(athleteName + ':');
-           console.log(athletes[athleteName]);
+//   var athletes = {
+//     "Bob": {"100m": 12.3, "Long jump": 530, "Shot put": 9.4, "High jump": 160, "400m": 59.6, "110m hurdles": 19.2, "Discus throw": 23, "Pole vault": 270, "Javelin throw": 19, "1500m": 300.5 },
+//     "Fred": {"100m": 11.9, "Long jump": 500, "Shot put": 9.4, "High jump": 150, "400m": 59.6, "110m hurdles": 19.2, "Discus throw": 19, "Pole vault": 320, "Javelin throw": 19, "1500m": 295.5 }
+//   }
 
-       })
-    }
+//       function decathlon(athletes){
+//         //INT(A(B-P)^C)
+//        const timePoints = (a,b,c,p) => Math.round(a* Math.pow(b-p, c)) 
+//         //INT(A(P-B)^C)
+//        const scorePoints = (a,b,c,p) => Math.round(a* Math.pow(p-b, c))
+//        Object.keys(athletes).forEach(athleteName => {
+//            console.log(athleteName + ':');
+//            console.log(athletes[athleteName]);
+//         //1.через фор проверить сколько атлетов учавствует
+//         //2.и здесь же перебрать каждого по ключам 
+//         //3. передать значения в формулу
+//         //4. посчитать результат каждого 
+//         //5. сравнить и вывести победителя 
+//        })
+//     }
+//     console.log (decathlon());
       
-
+ 
 
  //Who likes it?__________________________________________________
 //  function likes(names) {
