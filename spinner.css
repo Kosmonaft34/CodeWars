@@ -1,0 +1,16 @@
+.spinner{
+    /* width: 100%;
+    height: 100vh; */
+    border-color: rgba(255, 255, 255, 0.5);
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.spinner-img{
+    height: 50%;
+    width: 50%;
+}

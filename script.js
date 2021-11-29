@@ -1,49 +1,59 @@
-//The observed PIN_____________________________________
-/** @param {string} observed */
-function getPINs(observed) {
-    let variants = {
-        '0' : ['0', '8'],              //для 0
-        '1' : ['1', '2', '4'],          //для 1
-        '2' : ['1','2', '3', '5'],          //2
-        '3' : ['2', '3', '6'],          //3
-        '4' : ['1', '4', '5', '7'],     //4
-        '5' : ['2', '5', '6', '8'],     //5
-        '6' : ['3', '5', '6', '9'],     //6
-        '7' : ['4', '7', '8'],          //7
-        '8' : ['5', '7', '8', '9', '0'],//8
-        '9' : ['6', '8', '9']          //9
 
-    }
-    function cartesian(arrays) {
-        const result = [];
-        // функция, которая будет рекурсивно вызываться
-        // глубина рекурсии равна arrays.length
-        // в процессе рекурсии функция будет создавать часть элемента декартова произведения
-        // в конце рекусрии функция добавит созданный элемент в массив result
-        const recursion = (tuplePart) => {
-            if (tuplePart.length === arrays.length) {
-                result.push(tuplePart);
-            } else {
-                const array = arrays[tuplePart.length];
-                for (const element of array) {
-                    // создаём копию tuplePart и добавляем в неё очередной элемент
-                    const tuplePartWithNewElement = tuplePart.concat([element]);
-                    recursion(tuplePartWithNewElement);
-                }
-            }
-        };
-        recursion([]);
-        return result;
-    }
+// /** @param {string} observed */
+//Correct the mistakes of the character recognition software___НЕ ДОДЕЛАНА__________________
+// let string = 'L0ND0N'
+// function correct(string){
+//     let str = string.split(' ');         
+//     return str;
+// }
+// console.log(correct());
+
+//The observed PIN_____________________________________
+// /** @param {string} observed */
+// function getPINs(observed) {
+//     let variants = {
+//         '0' : ['0', '8'],              //для 0
+//         '1' : ['1', '2', '4'],          //для 1
+//         '2' : ['1','2', '3', '5'],          //2
+//         '3' : ['2', '3', '6'],          //3
+//         '4' : ['1', '4', '5', '7'],     //4
+//         '5' : ['2', '5', '6', '8'],     //5
+//         '6' : ['3', '5', '6', '9'],     //6
+//         '7' : ['4', '7', '8'],          //7
+//         '8' : ['5', '7', '8', '9', '0'],//8
+//         '9' : ['6', '8', '9']          //9
+
+//     }
+//     function cartesian(arrays) {
+//         const result = [];
+//         // функция, которая будет рекурсивно вызываться
+//         // глубина рекурсии равна arrays.length
+//         // в процессе рекурсии функция будет создавать часть элемента декартова произведения
+//         // в конце рекусрии функция добавит созданный элемент в массив result
+//         const recursion = (tuplePart) => {
+//             if (tuplePart.length === arrays.length) {
+//                 result.push(tuplePart);
+//             } else {
+//                 const array = arrays[tuplePart.length];
+//                 for (const element of array) {
+//                     // создаём копию tuplePart и добавляем в неё очередной элемент
+//                     const tuplePartWithNewElement = tuplePart.concat([element]);
+//                     recursion(tuplePartWithNewElement);
+//                 }
+//             }
+//         };
+//         recursion([]);
+//         return result;
+//     }
     
-     const sets = observed.split('').map(digit=>{
-         return variants[digit]
-     })
-     return cartesian(sets).map(comb =>{
-         return comb.join(' ')
-     })
-  }
- console.log(getPINs('369'));
+//      const sets = observed.split('').map(digit=>{
+//          return variants[digit]
+//      })
+//      return cartesian(sets).map(comb =>{
+//          return comb.join(' ')
+//      })
+//   }
+//  console.log(getPINs('369'));
 // let deadline = new Date('Dec 1 2021 00:00:00'); 
 //         function counts() { 
 //             let now = new Date() 
